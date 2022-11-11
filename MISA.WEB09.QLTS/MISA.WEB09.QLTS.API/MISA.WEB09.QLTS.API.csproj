@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MISA.WEB09.QLTS.BL\MISA.WEB09.QLTS.BL.csproj" />
+    <ProjectReference Include="..\MISA.WEB09.QLTS.Common\MISA.WEB09.QLTS.Common.csproj" />
+  </ItemGroup>
+
+</Project>

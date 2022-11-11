@@ -1,0 +1,17 @@
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.BL.deps.json
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.BL.dll
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.BL.pdb
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.Common.dll
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.DL.dll
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.Common.pdb
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\bin\Debug\net6.0\MISA.WEB09.QLTS.DL.pdb
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.csproj.AssemblyReference.cache
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.AssemblyInfoInputs.cache
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.AssemblyInfo.cs
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.csproj.CoreCompileInputs.cache
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.csproj.CopyComplete
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.dll
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\refint\MISA.WEB09.QLTS.BL.dll
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\MISA.WEB09.QLTS.BL.pdb
+C:\Users\NINH\source\repos\MISA.WEB09.QLTS\MISA.WEB09.QLTS.BL\obj\Debug\net6.0\ref\MISA.WEB09.QLTS.BL.dll

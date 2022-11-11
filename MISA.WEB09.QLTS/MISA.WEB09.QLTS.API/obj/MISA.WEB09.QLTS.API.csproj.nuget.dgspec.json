@@ -1,0 +1,299 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj",
+        "projectName": "MISA.WEB09.QLTS.API",
+        "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj",
+        "packagesPath": "C:\\Users\\NINH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj": {
+                "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj"
+              },
+              "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj": {
+                "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj",
+        "projectName": "MISA.WEB09.QLTS.BL",
+        "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj",
+        "packagesPath": "C:\\Users\\NINH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj": {
+                "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj"
+              },
+              "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.DL\\MISA.WEB09.QLTS.DL.csproj": {
+                "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.DL\\MISA.WEB09.QLTS.DL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Exchange.WebServices": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj",
+        "projectName": "MISA.WEB09.QLTS.Common",
+        "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj",
+        "packagesPath": "C:\\Users\\NINH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.DL\\MISA.WEB09.QLTS.DL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.DL\\MISA.WEB09.QLTS.DL.csproj",
+        "projectName": "MISA.WEB09.QLTS.DL",
+        "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.DL\\MISA.WEB09.QLTS.DL.csproj",
+        "packagesPath": "C:\\Users\\NINH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.DL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj": {
+                "projectPath": "C:\\Users\\NINH\\source\\repos\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Dapper.StrongName": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

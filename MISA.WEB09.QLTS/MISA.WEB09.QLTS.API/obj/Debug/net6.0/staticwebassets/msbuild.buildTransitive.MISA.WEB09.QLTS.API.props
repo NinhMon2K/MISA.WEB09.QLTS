@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MISA.WEB09.QLTS.API.props" />
+</Project>
