@@ -123,7 +123,8 @@ namespace MISA.WEB09.QLTS.API.Controllers
                             result.Data,
                             HttpContext.TraceIdentifier));
                     }
-                } else
+                }
+                else
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
                     ErrorCode.Exception,
@@ -146,5 +147,89 @@ namespace MISA.WEB09.QLTS.API.Controllers
             }
         }
         #endregion
+
+        #region API Delete
+        /// <summary>
+        /// Xóa 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần xóa</param>
+        /// <returns>ID bản ghi vừa xóa</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        [HttpDelete("{recordId}")]
+        public IActionResult DeleteRecord([FromRoute] Guid recordId)
+        {
+            try
+            {
+                var result = _baseBL.DeleteRecord(recordId);
+
+                if (result != Guid.Empty)
+                {
+                    return StatusCode(StatusCodes.Status200OK, result);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
+                        ErrorCode.Exception,
+                        Resource.DevMsg_DeleteFailed,
+                        Resource.UserMsg_DeleteFailed,
+                        result,
+                        HttpContext.TraceIdentifier));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
+                    ErrorCode.Exception,
+                    Resource.DevMsg_Exception,
+                    Resource.UserMsg_Exception,
+                    Resource.MoreInfo_Exception,
+                    HttpContext.TraceIdentifier));
+            }
+        }
+        #endregion
+
+        #region API Update
+        /// <summary>
+        /// Cập nhật 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần cập nhật</param>
+        /// <param name="record">Đối tượng cần cập nhật theo</param>
+        /// <returns>Đối tượng sau khi cập nhật</returns>
+        /// Cretaed by:  NNNINH (11/11/2022)
+        [HttpPut("{recordId}")]
+        public IActionResult UpdateRecord([FromRoute] Guid recordId, [FromBody] T record)
+        {
+            try
+            {
+                var result = _baseBL.UpdateRecord(recordId, record);
+
+                if (result.Success)
+                {
+                    return StatusCode(StatusCodes.Status200OK, result.Data);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
+                     ErrorCode.Exception,
+                        Resource.DevMsg_ValidateFailed,
+                        Resource.UserMsg_ValidateFailed,
+                        result.Data,
+                        HttpContext.TraceIdentifier));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
+                   ErrorCode.Exception,
+                    Resource.DevMsg_Exception,
+                    Resource.UserMsg_Exception,
+                    Resource.MoreInfo_Exception,
+                    HttpContext.TraceIdentifier));
+            }
+        }
+        #endregion
     }
 }
+

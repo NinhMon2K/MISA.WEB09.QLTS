@@ -25,6 +25,24 @@ namespace MISA.WEB09.QLTS.BL
 
         #endregion
 
+        #region API PagedingFillter
+        /// <summary>
+        /// Lấy danh sách các tài sản có chọn lọc
+        /// </summary>
+        /// <param name="keyword">Từ để tìm kiếm theo mã và tên tài sản</param>
+        /// <param name="departmentId">ID phòng ban</param>
+        /// <param name="categoryId">ID loại tài sản</param>
+        /// <param name="limit">Số bản ghi muốn lấy</param>
+        /// <param name="page">Số trang bắt đầu lấy</param>
+        /// <returns>Danh sách các tài sản sau khi chọn lọc và các giá trị khác</returns>
+        /// Created by: NNNINH (12/11/2022) 
+        public PagingData<Asset> FilterAssets(string? keyword, Guid? departmentId, Guid? categoryId, int limit, int page)
+        {
+            return _assetDL.FilterAssets(keyword, departmentId, categoryId, limit, page);
+        }
+        #endregion
+
+        #region API NextCode
         /// <summary>
         /// Sinh mã tài sản tiếp theo
         /// </summary>
@@ -33,6 +51,7 @@ namespace MISA.WEB09.QLTS.BL
         public string NextAssetCode()
         {
             return _assetDL.NextAssetCode();
-        }
+        } 
+        #endregion
     }
 }

@@ -56,8 +56,8 @@ namespace MISA.WEB09.QLTS.BL
         /// Created by: NNNINH (09/11/2022)
         public PagingData<T> FilterRecords(string? keyword, string type)
         {
-            return _baseDL.FilterRecords(keyword, type); 
-          
+            return _baseDL.FilterRecords(keyword, type);
+
         }
         #endregion
 
@@ -105,7 +105,79 @@ namespace MISA.WEB09.QLTS.BL
                     Data = validateResult?.Data
                 };
             }
-        } 
+        }
+        #endregion
+
+        #region API Update
+        /// <summary>
+        /// Cập nhật 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần cập nhật</param>
+        /// <param name="record">Đối tượng cần cập nhật theo</param>
+        /// <returns>Đối tượng sau khi cập nhật</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        public ServiceResponse UpdateRecord(Guid recordId, T record)
+        {
+            var validateResult = ValidateRequestData(record, recordId);
+
+            if (validateResult != null && validateResult.Success)
+            {
+                var inputRecordID = _baseDL.UpdateRecord(recordId, record);
+
+                if (inputRecordID != Guid.Empty)
+                {
+                    return new ServiceResponse
+                    {
+                        Success = true,
+                        Data = inputRecordID
+                    };
+                }
+                else
+                {
+                    return new ServiceResponse
+                    {
+                        Success = false,
+                        Data = new ErrorResult(
+                            ErrorCode.InvalidInput,
+                            Resource.DevMsg_InsertFailed,
+                            Resource.UserMsg_InsertFailed,
+                            Resource.MoreInfo_InsertFailed)
+                    };
+                }
+            }
+            else
+            {
+                return new ServiceResponse
+                {
+                    Success = false,
+                    Data = validateResult?.Data
+                };
+            }
+        }
+        #endregion
+
+        #region API Delete
+        /// <summary>
+        /// Xóa 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần xóa</param>
+        /// <returns>ID bản ghi vừa xóa</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        public Guid DeleteRecord(Guid recordId)
+        {
+            return _baseDL.DeleteRecord(recordId);
+        }
+
+        /// <summary>
+        /// Xóa nhiều bản ghi
+        /// </summary>
+        /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
+        /// <returns>Danh sách ID các bản ghi đã xóa</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        public List<string> DeleteMultiRecords(List<string> recordIdList)
+        {
+            return _baseDL.DeleteMultiRecords(recordIdList);
+        }
         #endregion
 
         #region ValidateData 
@@ -120,13 +192,14 @@ namespace MISA.WEB09.QLTS.BL
         {
             // Validate dữ liệu đầu vào
             var properties = typeof(T).GetProperties();
-            var validateFailures = new List<string>();
+            Dictionary<string, string> validateFailures = new Dictionary<string, string>();
+            //var validateFailures = new List<string>();
 
             if (record != null)
             {
-                // Duyệt qua từng phần tử
+                // duyệt qua từng phần tử
                 foreach (var property in properties)
-                {
+                {           
                     // Lấy giá trị của thuộc tính đó
                     var propertyValue = property.GetValue(record, null);
                     // Kiểm tra property có require
@@ -134,13 +207,13 @@ namespace MISA.WEB09.QLTS.BL
                     // Kiểm tra xem property đã có attibute Required không ho
                     if (IsNotNullOrEmptyAttribute != null && string.IsNullOrEmpty(propertyValue?.ToString()))
                     {
-                        validateFailures.Add(IsNotNullOrEmptyAttribute.ErrorMessage);
-                    }           
+                        validateFailures.Add((string)property.Name, IsNotNullOrEmptyAttribute.ErrorMessage);
+                    }
                     var IsNotDuplicateAttribute = (IsNotDuplicateAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotDuplicateAttribute));
                     if (IsNotDuplicateAttribute != null)
                     {
                         int count = _baseDL.DuplicateRecordCode(propertyValue, recordId);
-                        if (count > 0) validateFailures.Add(IsNotDuplicateAttribute.ErrorMessage);
+                        if (count > 0) validateFailures.Add((string)property.Name, IsNotDuplicateAttribute.ErrorMessage);
                     }
                 }
             }
@@ -157,7 +230,7 @@ namespace MISA.WEB09.QLTS.BL
             {
                 Success = true
             };
-        } 
+        }
         #endregion
 
 

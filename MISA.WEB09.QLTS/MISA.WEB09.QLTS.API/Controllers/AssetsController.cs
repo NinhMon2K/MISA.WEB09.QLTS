@@ -26,12 +26,48 @@ namespace MISA.WEB09.QLTS.API.Controllers
         }
 
         #endregion
+
+        #region API PagedingFillter
+        /// <summary>
+        /// Lấy danh sách các tài sản có chọn lọc
+        /// </summary>
+        /// <param name="keyword">Từ để tìm kiếm theo mã và tên tài sản</param>
+        /// <param name="departmentId">ID phòng ban</param>
+        /// <param name="categoryId">ID loại tài sản</param>
+        /// <param name="limit">Số bản ghi muốn lấy</param>
+        /// <param name="page">Số trang bắt đầu lấy</param>
+        /// <returns>Danh sách các tài sản sau khi chọn lọc và các giá trị khác</returns>
+        /// Created by: NNNINH (12/11/2022)
+        [HttpGet("filters")]
+        public IActionResult FilterAssets([FromQuery] string? keyword, [FromQuery] Guid? departmentId, [FromQuery] Guid? categoryId, [FromQuery] int limit, [FromQuery] int page)
+        {
+            try
+            {
+                var filterResponse = _assetBL.FilterAssets(keyword, departmentId, categoryId, limit, page);
+
+                return StatusCode(StatusCodes.Status200OK, filterResponse);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
+                    ErrorCode.Exception,
+                    Resource.DevMsg_Exception,
+                    Resource.UserMsg_Exception,
+                    Resource.MoreInfo_Exception,
+                    HttpContext.TraceIdentifier));
+            }
+        }
+        #endregion
+
+
+        #region API NextCode
         /// <summary>
         /// Sinh mã tài sản tiếp theo
         /// </summary>
         /// <returns>Mã tài sản tiếp theo</returns>
         /// Cretaed by: NNNINH (09/11/2022)
-        [HttpGet("nextCode")]
+        [HttpGet("NextCode")]
         public IActionResult NextAssetCode()
         {
             try
@@ -67,5 +103,6 @@ namespace MISA.WEB09.QLTS.API.Controllers
                     HttpContext.TraceIdentifier));
             }
         }
-    }
+    } 
+    #endregion
 }

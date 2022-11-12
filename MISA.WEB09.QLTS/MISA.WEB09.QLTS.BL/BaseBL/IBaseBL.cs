@@ -42,7 +42,36 @@ namespace MISA.WEB09.QLTS.BL
         /// <param name="record">Đối tượng bản ghi cần thêm mới</param>
         /// <returns>ID của bản ghi vừa thêm. Return về Guid rỗng nếu thêm mới thất bại</returns>
         /// Cretaed by:  NNINH (10/11/2022)
-        public ServiceResponse InsertRecord(T record); 
+        public ServiceResponse InsertRecord(T record);
+        #endregion
+
+        #region API Update
+        /// <summary>
+        /// Cập nhật 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần cập nhật</param>
+        /// <param name="record">Đối tượng cần cập nhật theo</param>
+        /// <returns>Đối tượng sau khi cập nhật</returns>
+        /// Cretaed by:NNNINH (11/11/2022)
+        public ServiceResponse UpdateRecord(Guid recordId, T record);
+        #endregion
+
+        #region API Delete
+        /// <summary>
+        /// Xóa 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần xóa</param>
+        /// <returns>ID bản ghi vừa xóa</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        public Guid DeleteRecord(Guid recordId);
+
+        /// <summary>
+        /// Xóa nhiều bản ghi
+        /// </summary>
+        /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
+        /// <returns>Danh sách ID các bản ghi đã xóa</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        public List<string> DeleteMultiRecords(List<string> recordIdList); 
         #endregion
     }
 }
