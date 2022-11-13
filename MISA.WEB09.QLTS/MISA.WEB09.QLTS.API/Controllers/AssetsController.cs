@@ -38,7 +38,7 @@ namespace MISA.WEB09.QLTS.API.Controllers
         /// <param name="page">Số trang bắt đầu lấy</param>
         /// <returns>Danh sách các tài sản sau khi chọn lọc và các giá trị khác</returns>
         /// Created by: NNNINH (12/11/2022)
-        [HttpGet("filters")]
+        [HttpGet("Filters")]
         public IActionResult FilterAssets([FromQuery] string? keyword, [FromQuery] Guid? departmentId, [FromQuery] Guid? categoryId, [FromQuery] int limit, [FromQuery] int page)
         {
             try

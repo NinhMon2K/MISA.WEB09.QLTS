@@ -192,7 +192,7 @@ namespace MISA.WEB09.QLTS.BL
         {
             // Validate dữ liệu đầu vào
             var properties = typeof(T).GetProperties();
-            Dictionary<string, string> validateFailures = new Dictionary<string, string>();
+            var validateFailures = new List<string>();
             //var validateFailures = new List<string>();
 
             if (record != null)
@@ -207,13 +207,13 @@ namespace MISA.WEB09.QLTS.BL
                     // Kiểm tra xem property đã có attibute Required không ho
                     if (IsNotNullOrEmptyAttribute != null && string.IsNullOrEmpty(propertyValue?.ToString()))
                     {
-                        validateFailures.Add((string)property.Name, IsNotNullOrEmptyAttribute.ErrorMessage);
+                        validateFailures.Add( IsNotNullOrEmptyAttribute.ErrorMessage);
                     }
                     var IsNotDuplicateAttribute = (IsNotDuplicateAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotDuplicateAttribute));
                     if (IsNotDuplicateAttribute != null)
                     {
                         int count = _baseDL.DuplicateRecordCode(propertyValue, recordId);
-                        if (count > 0) validateFailures.Add((string)property.Name, IsNotDuplicateAttribute.ErrorMessage);
+                        if (count > 0) validateFailures.Add(IsNotDuplicateAttribute.ErrorMessage);
                     }
                 }
             }

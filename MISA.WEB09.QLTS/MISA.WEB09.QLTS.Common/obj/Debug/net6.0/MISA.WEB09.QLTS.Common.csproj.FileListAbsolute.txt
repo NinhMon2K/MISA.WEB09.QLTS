@@ -26,3 +26,17 @@ C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.
 C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\refint\MISA.WEB09.QLTS.Common.dll
 C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.pdb
 C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\ref\MISA.WEB09.QLTS.Common.dll
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\bin\Debug\net6.0\MISA.WEB09.QLTS.Common.deps.json
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\bin\Debug\net6.0\MISA.WEB09.QLTS.Common.dll
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\bin\Debug\net6.0\MISA.WEB09.QLTS.Common.pdb
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.csproj.AssemblyReference.cache
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.Resources.Resource.resources
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.csproj.GenerateResource.cache
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.AssemblyInfoInputs.cache
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.AssemblyInfo.cs
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.csproj.CoreCompileInputs.cache
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.dll
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\refint\MISA.WEB09.QLTS.Common.dll
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\MISA.WEB09.QLTS.Common.pdb
+C:\Users\NINH\source\repos\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.Common\obj\Debug\net6.0\ref\MISA.WEB09.QLTS.Common.dll

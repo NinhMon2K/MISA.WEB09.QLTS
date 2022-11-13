@@ -148,47 +148,6 @@ namespace MISA.WEB09.QLTS.API.Controllers
         }
         #endregion
 
-        #region API Delete
-        /// <summary>
-        /// Xóa 1 bản ghi
-        /// </summary>
-        /// <param name="recordId">ID bản ghi cần xóa</param>
-        /// <returns>ID bản ghi vừa xóa</returns>
-        /// Cretaed by: NNNINH (11/11/2022)
-        [HttpDelete("{recordId}")]
-        public IActionResult DeleteRecord([FromRoute] Guid recordId)
-        {
-            try
-            {
-                var result = _baseBL.DeleteRecord(recordId);
-
-                if (result != Guid.Empty)
-                {
-                    return StatusCode(StatusCodes.Status200OK, result);
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
-                        ErrorCode.Exception,
-                        Resource.DevMsg_DeleteFailed,
-                        Resource.UserMsg_DeleteFailed,
-                        result,
-                        HttpContext.TraceIdentifier));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
-                    ErrorCode.Exception,
-                    Resource.DevMsg_Exception,
-                    Resource.UserMsg_Exception,
-                    Resource.MoreInfo_Exception,
-                    HttpContext.TraceIdentifier));
-            }
-        }
-        #endregion
-
         #region API Update
         /// <summary>
         /// Cập nhật 1 bản ghi
@@ -230,6 +189,88 @@ namespace MISA.WEB09.QLTS.API.Controllers
             }
         }
         #endregion
+       
+        #region API Delete
+        /// <summary>
+        /// Xóa 1 bản ghi
+        /// </summary>
+        /// <param name="recordId">ID bản ghi cần xóa</param>
+        /// <returns>ID bản ghi vừa xóa</returns>
+        /// Cretaed by: NNNINH (11/11/2022)
+        [HttpDelete("{recordId}")]
+        public IActionResult DeleteRecord(Guid recordId)
+        {
+            try
+            {
+                var result = _baseBL.DeleteRecord(recordId);
+
+                if (result != Guid.Empty)
+                {
+                    return StatusCode(StatusCodes.Status200OK, result);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
+                        ErrorCode.Exception,
+                        Resource.DevMsg_DeleteFailed,
+                        Resource.UserMsg_DeleteFailed,
+                        result,
+                        HttpContext.TraceIdentifier));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
+                    ErrorCode.Exception,
+                    Resource.DevMsg_Exception,
+                    Resource.UserMsg_Exception,
+                    Resource.MoreInfo_Exception,
+                    HttpContext.TraceIdentifier));
+            }
+        }
+
+        /// <summary>
+        /// Xóa nhiều bản ghi
+        /// </summary>
+        /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
+        /// <returns>Danh sách ID các bản ghi đã xóa</returns>
+        /// Cretaed by: NNNINH (12/11/2022)
+        [HttpPost("batch-delete")]
+        public IActionResult DeleteMultiRecords([FromBody] List<string> recordIdList)
+        {
+            try
+            {
+                List<string> results = _baseBL.DeleteMultiRecords(recordIdList);
+
+                if (results.Count > 0)
+                {
+                    return StatusCode(StatusCodes.Status200OK, results);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
+                       ErrorCode.Exception,
+                        Resource.DevMsg_DeleteFailed,
+                        Resource.UserMsg_DeleteFailed,
+                        recordIdList,
+                        HttpContext.TraceIdentifier));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
+                    ErrorCode.Exception,
+                    Resource.DevMsg_Exception,
+                    Resource.UserMsg_Exception,
+                    Resource.MoreInfo_Exception,
+                    HttpContext.TraceIdentifier));
+            }
+        }
+
+        #endregion
+
     }
 }
 
