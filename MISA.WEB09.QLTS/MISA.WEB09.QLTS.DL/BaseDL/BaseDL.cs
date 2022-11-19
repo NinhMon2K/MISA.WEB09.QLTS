@@ -79,11 +79,10 @@ namespace MISA.WEB09.QLTS.DL
         /// <param name="record">Đối tượng bản ghi cần thêm mới</param>
         /// <returns>ID của bản ghi vừa thêm. Return về Guid rỗng nếu thêm mới thất bại</returns>
         /// Cretaed by: NNNINH (10/11/2022)
-        public Guid InsertRecord(T record)
+        public Guid InsertRecord(T record, Guid recordId)
         {
             // Chuẩn bị tham số đầu vào cho procedure
             var parameters = new DynamicParameters();
-            var newRecordID = Guid.NewGuid();
             var properties = typeof(T).GetProperties();
             foreach (var property in properties)
             {
@@ -92,7 +91,7 @@ namespace MISA.WEB09.QLTS.DL
                 var primaryKeyAttribute = (PrimaryKeyAttribute)Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
                 if (primaryKeyAttribute != null)
                 {
-                    propertyValue = newRecordID;
+                    propertyValue = recordId;
                 }
                 else
                 {
@@ -116,7 +115,7 @@ namespace MISA.WEB09.QLTS.DL
             // Xử lý dữ liệu trả về
             if (numberOfAffectedRows > 0)
             {
-                return newRecordID;
+                return recordId;
             }
             else
             {

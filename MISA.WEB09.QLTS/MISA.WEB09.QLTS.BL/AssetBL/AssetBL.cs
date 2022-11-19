@@ -36,9 +36,9 @@ namespace MISA.WEB09.QLTS.BL
         /// <param name="page">Số trang bắt đầu lấy</param>
         /// <returns>Danh sách các tài sản sau khi chọn lọc và các giá trị khác</returns>
         /// Created by: NNNINH (12/11/2022) 
-        public PagingData<Asset> FilterAssets(string? keyword, Guid? departmentId, Guid? categoryId, int limit, int page)
+        public PagingData<Asset> FilterAssets(PagingAsset pagingAsset)
         {
-            return _assetDL.FilterAssets(keyword, departmentId, categoryId, limit, page);
+            return _assetDL.FilterAssets(pagingAsset);
         }
         #endregion
 

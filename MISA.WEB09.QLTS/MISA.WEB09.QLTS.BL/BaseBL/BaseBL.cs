@@ -70,18 +70,19 @@ namespace MISA.WEB09.QLTS.BL
         /// Cretaed by: NNNINH (10/11/2022)
         public ServiceResponse InsertRecord(T record)
         {
-            var validateResult = ValidateRequestData(record, Guid.Empty);
+            var newRecordID = Guid.NewGuid();
+            var validateResult = ValidateRequestData(record, newRecordID);
 
             if (validateResult != null && validateResult.Success)
             {
-                var newRecordID = _baseDL.InsertRecord(record);
+                var res= _baseDL.InsertRecord(record, newRecordID);
 
-                if (newRecordID != Guid.Empty)
+                if (res != Guid.Empty)
                 {
                     return new ServiceResponse
                     {
                         Success = true,
-                        Data = newRecordID
+                        Data = res
                     };
                 }
                 else

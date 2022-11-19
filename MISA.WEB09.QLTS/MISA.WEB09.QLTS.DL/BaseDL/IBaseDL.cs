@@ -43,7 +43,7 @@ namespace MISA.WEB09.QLTS.DL
         /// <param name="record">Đối tượng bản ghi cần thêm mới</param>
         /// <returns>ID của bản ghi vừa thêm. Return về Guid rỗng nếu thêm mới thất bại</returns>
         /// Cretaed by: NNNINH (09/11/2022)
-        public Guid InsertRecord(T record);
+        public Guid InsertRecord(T record, Guid recordId);
         #endregion
 
         #region API Update

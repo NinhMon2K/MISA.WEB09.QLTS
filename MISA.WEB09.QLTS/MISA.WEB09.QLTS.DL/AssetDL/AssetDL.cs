@@ -24,18 +24,36 @@ namespace MISA.WEB09.QLTS.DL
         /// <param name="page">Số trang bắt đầu lấy</param>
         /// <returns>Danh sách các tài sản sau khi chọn lọc và các giá trị khác</returns>
         /// Created by: NNNINH (12/11/2022)
-        public PagingData<Asset> FilterAssets(string? keyword, Guid? departmentId, Guid? categoryId, int limit, int page)
+        public PagingData<Asset> FilterAssets(PagingAsset pagingAsset)
         {
             // Chuẩn bị tham số đầu vào cho procedure
             var parameters = new DynamicParameters();
-            parameters.Add("v_Offset", (page - 1) * limit);
-            parameters.Add("v_Limit", limit);
+            parameters.Add("v_Offset", (pagingAsset.page - 1) * pagingAsset.limit);
+            parameters.Add("v_Limit", pagingAsset.limit);
             parameters.Add("v_Sort", "");
 
             var whereConditions = new List<string>();
-            if (keyword != null) whereConditions.Add($"(fixed_asset_code LIKE \'%{keyword}%\' OR fixed_asset_name LIKE \'%{keyword}%\')");
-            if (departmentId != null) whereConditions.Add($"department_id LIKE \'{departmentId}\'");
-            if (categoryId != null) whereConditions.Add($"fixed_asset_category_id LIKE \'{categoryId}\'");
+            var listDepartmentId = new List<string>();
+            var listCategoryId = new List<string>();
+            if (pagingAsset.keyword != null) whereConditions.Add($"(fixed_asset_code LIKE \'%{pagingAsset.keyword}%\' OR fixed_asset_name LIKE \'%{pagingAsset.keyword}%\')");
+            if (pagingAsset.listDepartment.Count != 0)
+            {
+                foreach (var department in pagingAsset.listDepartment)
+                {
+                    listDepartmentId.Add($"department_id LIKE \'{department}\'");
+                }
+                string whereDepartmentId = string.Join(" OR ", listDepartmentId);
+                whereConditions.Add(whereDepartmentId);
+            }
+            if (pagingAsset.listCategory.Count != 0)
+            {
+                foreach (var category in pagingAsset.listCategory)
+                {
+                    listCategoryId.Add($"fixed_asset_category_id LIKE \'{category}\'");
+                }
+                string whereCategoryId = string.Join(" OR ", listCategoryId);
+                whereConditions.Add(whereCategoryId);
+            }
             string whereClause = string.Join(" AND ", whereConditions);
 
             parameters.Add("v_Where", whereClause);
