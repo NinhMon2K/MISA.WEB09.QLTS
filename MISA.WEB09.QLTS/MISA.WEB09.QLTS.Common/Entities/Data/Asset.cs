@@ -25,12 +25,14 @@ namespace MISA.WEB09.QLTS.Common.Entities
         /// </summary>
         ///   [IsNotNullOrEmpty("Mã tài sản không được để trống")]
         [IsNotDuplicate("Mã tài sản không được trùng")]
+        [ExcelColumnName("Mã tài sản")]
         public string? fixed_asset_code { get; set; }
 
         /// <summary>
         /// Tên tài sản
         /// </summary>   
         [IsNotNullOrEmpty("Tên tài sản không được để trống")]
+        [ExcelColumnName("Tên tài sản")]
         public string? fixed_asset_name { get; set; }
 
         /// <summary>
@@ -64,6 +66,7 @@ namespace MISA.WEB09.QLTS.Common.Entities
         /// Tên phòng ban
         /// </summary>
         [IsNotNullOrEmpty("Tên phòng ban không được để trống")]
+        [ExcelColumnName("Bộ phận sử dụng")]
         public string? department_name { get; set; }
 
         /// <summary>
@@ -82,24 +85,27 @@ namespace MISA.WEB09.QLTS.Common.Entities
         /// Tên loại tài sản
         /// </summary>
         [IsNotNullOrEmpty("Tên loại tài sản không được để trống")]
+        [ExcelColumnName("Loại tài sản")]
         public string? fixed_asset_category_name { get; set; }
 
         /// <summary>
         /// Ngày mua
         /// </summary>
         [IsNotNullOrEmpty("Ngày mua không được để trống")]
-        public DateTime purchase_date { get; set; }
+        public DateTime? purchase_date { get; set; }
 
         /// <summary>
         /// Nguyên giá
         /// </summary>
         [IsNotNullOrEmpty("Nguyên giá không được để trống")]
-        public decimal cost { get; set; }
+        [ExcelColumnName("Nguyên giá")]
+        public decimal? cost { get; set; }
 
         /// <summary>
         /// Số lượng
         /// </summary>
         [IsNotNullOrEmpty("Số lượng không được để trống")]
+        [ExcelColumnName("Số lượng")]
         public int quantity { get; set; }
 
         /// <summary>
@@ -140,6 +146,7 @@ namespace MISA.WEB09.QLTS.Common.Entities
         /// Hao mòn năm
         /// </summary>
         [IsNotNullOrEmpty("Hao mòn năm không được để trống")]
+        [ExcelColumnName("Hao mòn/khấu hao lũy kế")]
         public decimal depreciation_year { get; set; }
     }
 }
