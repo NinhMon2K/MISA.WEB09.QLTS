@@ -71,7 +71,7 @@ namespace MISA.WEB09.QLTS.BL
         /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
         /// <returns>Danh sách ID các bản ghi đã xóa</returns>
         /// Cretaed by: NNNINH (11/11/2022)
-        public List<string> DeleteMultiRecords(List<string> recordIdList);
+        public int DeleteMultiRecords(List<string> recordIdList);
         #endregion
 
         #region API Excel
@@ -80,7 +80,7 @@ namespace MISA.WEB09.QLTS.BL
         /// </summary>
         /// <returns>File excel danh sách bản ghi</returns>
         /// Author: NNNINH (26/11/2022) 
-        public Stream ExportExcel(); 
+        public Stream ExportExcel(IEnumerable<T> record); 
         #endregion
     }
 }

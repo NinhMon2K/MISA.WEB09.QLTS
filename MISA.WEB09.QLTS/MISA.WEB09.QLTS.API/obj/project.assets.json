@@ -674,6 +674,7 @@
         "dependencies": {
           "Dapper.StrongName": "2.0.123",
           "MISA.WEB09.QLTS.Common": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "MySqlConnector": "2.2.0",
           "System.Data.SqlClient": "4.8.5"
         },
@@ -1977,23 +1978,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NINH\\.nuget\\packages\\": {},
+    "C:\\Users\\nguye\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj",
+      "projectUniqueName": "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj",
       "projectName": "MISA.WEB09.QLTS.API",
-      "projectPath": "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj",
-      "packagesPath": "C:\\Users\\NINH\\.nuget\\packages\\",
-      "outputPath": "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\obj\\",
+      "projectPath": "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\MISA.WEB09.QLTS.API.csproj",
+      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\NINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2009,11 +2010,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj": {
-              "projectPath": "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj"
+            "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj": {
+              "projectPath": "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.BL\\MISA.WEB09.QLTS.BL.csproj"
             },
-            "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj": {
-              "projectPath": "D:\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj"
+            "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj": {
+              "projectPath": "C:\\Users\\nguye\\Downloads\\MISA.WebFresher09.QLTS\\MISA.WEB09.QLTS\\MISA.WEB09.QLTS.Common\\MISA.WEB09.QLTS.Common.csproj"
             }
           }
         }
@@ -2052,7 +2053,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },

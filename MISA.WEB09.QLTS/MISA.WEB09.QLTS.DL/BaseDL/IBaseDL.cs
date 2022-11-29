@@ -72,7 +72,7 @@ namespace MISA.WEB09.QLTS.DL
         /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
         /// <returns>Danh sách ID các bản ghi đã xóa</returns>
         /// Cretaed by: NNNINH (09/11/2022)
-        public List<string> DeleteMultiRecords(List<string> recordIdList);
+        public int DeleteMultiRecords(List<string> recordIdList);
         #endregion
 
         #region API RecordCode

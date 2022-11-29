@@ -194,3 +194,12 @@ D:\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\S
 D:\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 D:\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\EPPlus.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\nguye\Downloads\MISA.WebFresher09.QLTS\MISA.WEB09.QLTS\MISA.WEB09.QLTS.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

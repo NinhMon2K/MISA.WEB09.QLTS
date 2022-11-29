@@ -5,6 +5,8 @@ using MISA.WEB09.QLTS.Common.Resources;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -228,7 +230,7 @@ namespace MISA.WEB09.QLTS.DL
         /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
         /// <returns>Danh sách ID các bản ghi đã xóa</returns>
         /// Cretaed by:  NNNINH (11/11/2022)
-        public List<string> DeleteMultiRecords(List<string> recordIdList)
+        public int DeleteMultiRecords(List<string> recordIdList)
         {
             // Chuẩn bị tham số đầu vào cho procedure
             var properties = typeof(T).GetProperties();
@@ -248,33 +250,54 @@ namespace MISA.WEB09.QLTS.DL
             int numberOfAffectedRows = 0;
             using (var mysqlConnection = new MySqlConnection(connectionString))
             {
-                // Khai báo tên prodecure Insert
+               
+                // Khai báo tên prodecure 
                 string storedProcedureName = String.Format(Resource.Proc_Delete, typeof(T).Name);
 
-                mysqlConnection.Open();
+                //nếu như kết nối đang đóng thì tiến hành mở lại
+                if (mysqlConnection.State != ConnectionState.Open)
+                {
+                    mysqlConnection.Open();
+                }
 
                 // Bắt đầu transaction.
                 using (var transaction = mysqlConnection.BeginTransaction())
                 {
-                    for (int i = 0; i < recordIdList.Count; i++)
+                    try
                     {
-                        var parameters = new DynamicParameters();
-                        parameters.Add($"v_{propertyName}", recordIdList[i]);
-                        numberOfAffectedRows += mysqlConnection.Execute(storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure, transaction: transaction);
+                        for (int i = 0; i < recordIdList.Count; i++)
+                        {
+                            var parameters = new DynamicParameters();
+                            parameters.Add($"v_{propertyName}", recordIdList[i]);
+                            numberOfAffectedRows += mysqlConnection.Execute(storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure, transaction: transaction);
+                        }
+
+                        if (numberOfAffectedRows == recordIdList.Count)
+                        {
+                            transaction.Commit();
+                       
+                        }
+                        else
+                        {
+                            transaction.Rollback();
+                            numberOfAffectedRows = 0;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                        //nếu thực hiện không thành công thì rollback
+                        transaction.Rollback();
+                        numberOfAffectedRows = 0;
+                    }
+                    finally
+                    {
+                        mysqlConnection.Close();
                     }
 
-                    if (numberOfAffectedRows == recordIdList.Count)
-                    {
-                        transaction.Commit();
-                        return recordIdList;
-                    }
-                    else
-                    {
-                        transaction.Rollback();
-                        return new List<string>();
-                    }
                 }
             }
+            return numberOfAffectedRows;
         }
         #endregion
 

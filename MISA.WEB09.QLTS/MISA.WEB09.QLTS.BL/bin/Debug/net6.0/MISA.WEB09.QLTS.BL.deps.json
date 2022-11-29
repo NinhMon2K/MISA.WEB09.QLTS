@@ -365,6 +365,7 @@
         "dependencies": {
           "Dapper.StrongName": "2.0.123",
           "MISA.WEB09.QLTS.Common": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "MySqlConnector": "2.2.0",
           "System.Data.SqlClient": "4.8.5"
         },

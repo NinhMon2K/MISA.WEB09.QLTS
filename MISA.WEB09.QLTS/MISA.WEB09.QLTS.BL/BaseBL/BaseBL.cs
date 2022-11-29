@@ -179,7 +179,7 @@ namespace MISA.WEB09.QLTS.BL
         /// <param name="recordIdList">Danh sách ID các bản ghi cần xóa</param>
         /// <returns>Danh sách ID các bản ghi đã xóa</returns>
         /// Cretaed by: NNNINH (11/11/2022)
-        public List<string> DeleteMultiRecords(List<string> recordIdList)
+        public int DeleteMultiRecords(List<string> recordIdList)
         {
             return _baseDL.DeleteMultiRecords(recordIdList);
         }
@@ -361,7 +361,7 @@ namespace MISA.WEB09.QLTS.BL
         /// </summary>
         /// <returns>Đối tượng Stream chứa file excel</returns>
         /// Author: NNNINH (26/11/2022)
-        public Stream ExportExcel()
+        public Stream ExportExcel(IEnumerable<T> record)
         {
             var employees = _baseDL.GetAllRecords();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -370,7 +370,7 @@ namespace MISA.WEB09.QLTS.BL
             var workSheet = package.Workbook.Worksheets.Add("Danh sách tài sản");
             package.Workbook.Properties.Author = "Nguyễn Nghĩa Ninh";
             package.Workbook.Properties.Title = "Danh sách tài sản";
-            BindingFormatForExcel(workSheet, employees);
+            BindingFormatForExcel(workSheet, record);
             package.Save();
             stream.Position = 0; // Đặt con trỏ về đầu file để đọc
             return package.Stream;

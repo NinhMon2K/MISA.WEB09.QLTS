@@ -241,11 +241,11 @@ namespace MISA.WEB09.QLTS.API.Controllers
         {
             try
             {
-                List<string> results = _baseBL.DeleteMultiRecords(recordIdList);
+                var numberOfAffectedRows  = _baseBL.DeleteMultiRecords(recordIdList);
 
-                if (results.Count > 0)
+                if (numberOfAffectedRows > 0)
                 {
-                    return StatusCode(StatusCodes.Status200OK, results);
+                    return StatusCode(StatusCodes.Status200OK, numberOfAffectedRows);
                 }
                 else
                 {
@@ -278,10 +278,10 @@ namespace MISA.WEB09.QLTS.API.Controllers
         /// </summary>
         /// <returns>File excel danh sách bản ghi</returns>
         /// Author: NNNINH (26/11/2022)
-        [HttpGet("export")]
-        public IActionResult ExportExcel()
+        [HttpPost("export")]
+        public IActionResult ExportExcel([FromBody] IEnumerable<T> record)
         {
-            var stream = _baseBL.ExportExcel();
+            var stream = _baseBL.ExportExcel(record);
             string excelName = $"{"danhsachtaisan"}_{DateTime.Now.ToString("ddMMyyyyHHmmss")}.xlsx";
             return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
         } 
