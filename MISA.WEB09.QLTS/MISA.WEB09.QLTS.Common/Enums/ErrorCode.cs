@@ -50,5 +50,10 @@ namespace MISA.WEB09.QLTS.Common.Enums
         /// Thông tin nhập vào không hợp lệ
         /// </summary>
         InvalidInput = 8,
+
+        /// <summary>
+        /// Đăng nhập thất bại
+        /// </summary>
+        LoginFailed = 8,
     }
 }

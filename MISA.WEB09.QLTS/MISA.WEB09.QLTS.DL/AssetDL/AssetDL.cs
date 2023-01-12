@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MISA.WEB09.QLTS.Common.Entities;
+using MISA.WEB09.QLTS.Common.Enums;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,6 @@ namespace MISA.WEB09.QLTS.DL
 {
     public class AssetDL :BaseDL<Asset>, IAssetDL
     {
-
-        #region API PagedingFillter
 
         /// <summary>
         /// Lấy danh sách các tài sản có chọn lọc
@@ -54,6 +53,23 @@ namespace MISA.WEB09.QLTS.DL
                 string whereCategoryId = string.Join(" OR ", listCategoryId);
                 whereConditions.Add(whereCategoryId);
             }
+            if (pagingAsset.listIdAsset != null) {
+                /// Lấy các bản ghi được chọn
+                if (pagingAsset.mode == (int)GetRecordMode.Selected)
+                {
+                    whereConditions.Add($"fixed_asset_id IN ('{String.Join("','", pagingAsset.listIdAsset)}')");
+                }
+                /// Lấy các bản ghi không được chọn và không ghi tăng
+                else if (pagingAsset.mode == (int)GetRecordMode.NotSelectedNotIncrement)
+                {
+                    whereConditions.Add($"fixed_asset_id NOT IN ('{String.Join("','", pagingAsset.listIdAsset)}') AND increment_status = 0 OR increment_status IS NULL");
+                }
+                /// Lấy các bản ghi không được chọn
+                else
+                {
+                    whereConditions.Add($"fixed_asset_id NOT IN ('{String.Join("','", pagingAsset.listIdAsset)}')");
+                }
+            }
             string whereClause = string.Join(" AND ", whereConditions);
 
             parameters.Add("v_Where", whereClause);
@@ -82,37 +98,5 @@ namespace MISA.WEB09.QLTS.DL
 
             return filterResponse;
         }
-        #endregion
-
-
-        #region API NextCode
-        /// <summary>
-        /// Sinh mã tài sản tiếp theo
-        /// </summary>
-        /// <returns>Mã tài sản tiếp theo</returns>
-        /// Cretaed by: NNNINH (09/11/2022)
-        public string NextAssetCode()
-        {
-            // Khai báo tên prodecure Insert
-            string storedProcedureName = "Proc_asset_GetNextCode";
-
-            // Khởi tạo kết nối tới DB MySQL
-            string connectionString = DataContext.MySqlConnectionString;
-            string nextAssetCode = "";
-            using (var mysqlConnection = new MySqlConnection(connectionString))
-            {
-                nextAssetCode = mysqlConnection.QueryFirstOrDefault<string>(storedProcedureName, commandType: System.Data.CommandType.StoredProcedure);
-            }
-            // Xử lý dữ liệu trả về
-            if (nextAssetCode != null)
-            {
-                return nextAssetCode;
-            }
-            else
-            {
-                return "";
-            }
-        } 
-        #endregion
     }
 }

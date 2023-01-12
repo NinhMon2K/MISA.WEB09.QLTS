@@ -76,10 +76,9 @@ namespace MISA.WEB09.QLTS.BL
         {
             var newRecordID = Guid.NewGuid();
             var validateResult = ValidateRequestData(record, newRecordID);
-
             if (validateResult != null && validateResult.Success)
             {
-                var res= _baseDL.InsertRecord(record, newRecordID);
+                var res = _baseDL.InsertRecord(record, newRecordID);
 
                 if (res != Guid.Empty)
                 {
@@ -200,28 +199,25 @@ namespace MISA.WEB09.QLTS.BL
             var validateFailures = new List<string>();
             //var validateFailures = new List<string>();
 
-            if (record != null)
+            // duyệt qua từng phần tử
+            foreach (var property in properties)
             {
-                // duyệt qua từng phần tử
-                foreach (var property in properties)
-                {           
-                    // Lấy giá trị của thuộc tính đó
-                    var propertyValue = property.GetValue(record, null);
-                    // Kiểm tra property có require
-                    var IsNotNullOrEmptyAttribute = (IsNotNullOrEmptyAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotNullOrEmptyAttribute));
-                    // Kiểm tra xem property đã có attibute Required không 
-                    if (IsNotNullOrEmptyAttribute != null && string.IsNullOrEmpty(propertyValue?.ToString()))
-                    {
-                        validateFailures.Add( IsNotNullOrEmptyAttribute.ErrorMessage);
-                    }
+                // Lấy giá trị của thuộc tính đó
+                var propertyValue = property.GetValue(record, null);
+                // Kiểm tra property có require
+                var IsNotNullOrEmptyAttribute = (IsNotNullOrEmptyAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotNullOrEmptyAttribute));
+                // Kiểm tra xem property đã có attibute Required không 
+                if (IsNotNullOrEmptyAttribute != null && string.IsNullOrEmpty(propertyValue?.ToString()))
+                {
+                    validateFailures.Add(IsNotNullOrEmptyAttribute.ErrorMessage);
+                }
 
-                    // Kiểm tra xem property Attribure dùng để xác định 1 property không được trùng lặp 
-                    var IsNotDuplicateAttribute = (IsNotDuplicateAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotDuplicateAttribute));
-                    if (IsNotDuplicateAttribute != null)
-                    {
-                        int count = _baseDL.DuplicateRecordCode(propertyValue, recordId);
-                        if (count > 0) validateFailures.Add(IsNotDuplicateAttribute.ErrorMessage);
-                    }
+                // Kiểm tra xem property Attribure dùng để xác định 1 property không được trùng lặp 
+                var IsNotDuplicateAttribute = (IsNotDuplicateAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotDuplicateAttribute));
+                if (IsNotDuplicateAttribute != null)
+                {
+                    int count = _baseDL.DuplicateRecordCode(propertyValue, recordId);
+                    if (count > 0) validateFailures.Add(IsNotDuplicateAttribute.ErrorMessage);
                 }
             }
 
@@ -233,6 +229,7 @@ namespace MISA.WEB09.QLTS.BL
                     Data = validateFailures
                 };
             }
+
             return new ServiceResponse
             {
                 Success = true
@@ -374,9 +371,19 @@ namespace MISA.WEB09.QLTS.BL
             package.Save();
             stream.Position = 0; // Đặt con trỏ về đầu file để đọc
             return package.Stream;
-        } 
+        }
         #endregion
 
-
+        #region API NextCode
+        /// <summary>
+        /// Sinh mã tài sản tiếp theo
+        /// </summary>
+        /// <returns>Mã tài sản tiếp theo</returns>
+        /// Cretaed by: NNNINH (09/11/2022) 
+        public string NextAssetCode()
+        {
+            return _baseDL.GetNextAssetCode();
+        }
+        #endregion
     }
 }

@@ -80,7 +80,16 @@ namespace MISA.WEB09.QLTS.BL
         /// </summary>
         /// <returns>File excel danh sách bản ghi</returns>
         /// Author: NNNINH (26/11/2022) 
-        public Stream ExportExcel(IEnumerable<T> record); 
+        public Stream ExportExcel(IEnumerable<T> record);
+        #endregion
+
+        #region API NextCode
+        /// <summary>
+        /// Sinh mã tài sản tiếp theo
+        /// </summary>
+        /// <returns>Mã tài sản tiếp theo</returns>
+        /// Cretaed by: NNNINH (09/11/2022)
+        public string NextAssetCode();
         #endregion
     }
 }

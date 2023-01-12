@@ -25,13 +25,6 @@ namespace MISA.WEB09.QLTS.BL
        
         #endregion
 
-        #region API NextCode
-        /// <summary>
-        /// Sinh mã tài sản tiếp theo
-        /// </summary>
-        /// <returns>Mã tài sản tiếp theo</returns>
-        /// Cretaed by: NNNINH (09/11/2022)
-        public string NextAssetCode(); 
-        #endregion
+       
     }
 }

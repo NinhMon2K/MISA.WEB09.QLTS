@@ -133,6 +133,10 @@
     <value>Insert to database return 0</value>
     <comment>Message cho dev đọc khi Insert bản ghi vào database thất bại</comment>
   </data>
+  <data name="DevMsg_LoginFailed" xml:space="preserve">
+    <value>Sai thông tin đăng nhập</value>
+    <comment>Message cho dev đọc khi login thất bại</comment>
+  </data>
   <data name="DevMsg_SelectFailed" xml:space="preserve">
     <value>Select from database return 0</value>
     <comment>Message cho dev đọc khi Select bản ghi trong database thất bại</comment>
@@ -189,6 +193,14 @@
     <value>Proc_{0}_GetAll</value>
     <comment>Template string cho procedure lấy tất cả bản ghi của 1 bảng</comment>
   </data>
+  <data name="Proc_GetLastsCode" xml:space="preserve">
+    <value>Proc_{0}_GetLastsCode</value>
+    <comment>Template string cho procedure lấy mã cuối cùng</comment>
+  </data>
+  <data name="Proc_GetNextCode" xml:space="preserve">
+    <value>Proc_{0}_GetNextCode</value>
+    <comment>Template string cho procedure lấy mã tiếp theo</comment>
+  </data>
   <data name="Proc_GetPaging" xml:space="preserve">
     <value>Proc_{0}_GetPaging</value>
     <comment>Template string cho procedure lấy bản ghi theo điều kiện</comment>
@@ -212,6 +224,10 @@
   <data name="UserMsg_InsertFailed" xml:space="preserve">
     <value>Thêm mới bản ghi thất bại</value>
     <comment>Message cho user đọc khi Insert bản ghi vào database thất bại</comment>
+  </data>
+  <data name="UserMsg_LoginFailed" xml:space="preserve">
+    <value>Sai thông tin đăng nhập</value>
+    <comment>Message cho user đọc khi login thất bại</comment>
   </data>
   <data name="UserMsg_SelectFailed" xml:space="preserve">
     <value>Đọc bản ghi thất bại</value>

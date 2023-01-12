@@ -83,7 +83,16 @@ namespace MISA.WEB09.QLTS.DL
         /// <param name="recordId">Id bản ghi đưa vào (nếu là sửa)</param>
         /// <returns>Số lượng mã tài sản bị trùng</returns>
         /// Cretaed by:  NNNINH (09/11/2022)
-        public int DuplicateRecordCode(object recordCode, Guid recordId); 
+        public int DuplicateRecordCode(object recordCode, Guid recordId);
+        #endregion
+
+        #region API NextCode
+        /// <summary>
+        /// Sinh mã tài sản tiếp theo
+        /// </summary>
+        /// <returns>Mã tài sản tiếp theo</returns>
+        /// Cretaed by: NNNINH (09/11/2022)
+        public string GetNextAssetCode();
         #endregion
 
     }

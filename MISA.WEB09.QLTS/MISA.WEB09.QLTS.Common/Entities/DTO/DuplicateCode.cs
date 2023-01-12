@@ -15,5 +15,6 @@ namespace MISA.WEB09.QLTS.Common.Entities
         /// Số mã trùng
         /// </summary>
         public int Duplicates { get; set; }
+
     }
 }

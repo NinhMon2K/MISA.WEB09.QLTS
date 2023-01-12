@@ -27,6 +27,16 @@ namespace MISA.WEB09.QLTS.Common.Entities
         public IList<string>? listCategory { get; set; }
 
         /// <summary>
+        /// Mảng giá trị id tài sản
+        /// </summary>
+        public IList<string>? listIdAsset { get; set; }
+
+        /// <summary>
+        /// kiểu lấy bản ghi
+        /// </summary>
+        public int? mode { get; set; }
+
+        /// <summary>
         /// Số bản ghi hiện lên trên 1 trang
         /// </summary>
         public int? limit { get; set; }
@@ -38,6 +48,28 @@ namespace MISA.WEB09.QLTS.Common.Entities
 
         public PagingAsset()
         {
+        }
+
+        public PagingAsset(string? keyword, IList<string>? listDepartment, IList<string>? listCategory, IList<string>? listIdAsset, int? mode, int? limit, int? page) : this(keyword, listDepartment, listCategory, listIdAsset, mode, limit)
+        {
+            this.keyword = keyword;
+            this.listDepartment = listDepartment;
+            this.listCategory = listCategory;
+            this.listIdAsset = listIdAsset;
+            this.mode = mode;
+            this.limit = limit;
+            this.page = page;
+
+        }
+
+        public PagingAsset(string? keyword, IList<string>? listDepartment, IList<string>? listCategory, IList<string>? listIdAsset, int? limit, int? page)
+        {
+            this.keyword = keyword;
+            this.listDepartment = listDepartment;
+            this.listCategory = listCategory;
+            this.listIdAsset = listIdAsset;
+            this.limit = limit;
+            this.page = page;
         }
 
         public PagingAsset(string? keyword, IList<string>? listDepartment, IList<string>? listCategory, int? limit, int? page)

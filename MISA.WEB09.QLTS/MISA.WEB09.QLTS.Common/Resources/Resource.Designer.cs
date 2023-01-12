@@ -97,6 +97,15 @@ namespace MISA.WEB09.QLTS.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sai thông tin đăng nhập.
+        /// </summary>
+        public static string DevMsg_LoginFailed {
+            get {
+                return ResourceManager.GetString("DevMsg_LoginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select from database return 0.
         /// </summary>
         public static string DevMsg_SelectFailed {
@@ -223,6 +232,24 @@ namespace MISA.WEB09.QLTS.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proc_{0}_GetLastsCode.
+        /// </summary>
+        public static string Proc_GetLastsCode {
+            get {
+                return ResourceManager.GetString("Proc_GetLastsCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proc_{0}_GetNextCode.
+        /// </summary>
+        public static string Proc_GetNextCode {
+            get {
+                return ResourceManager.GetString("Proc_GetNextCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Proc_{0}_GetPaging.
         /// </summary>
         public static string Proc_GetPaging {
@@ -273,6 +300,15 @@ namespace MISA.WEB09.QLTS.Common.Resources {
         public static string UserMsg_InsertFailed {
             get {
                 return ResourceManager.GetString("UserMsg_InsertFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sai thông tin đăng nhập.
+        /// </summary>
+        public static string UserMsg_LoginFailed {
+            get {
+                return ResourceManager.GetString("UserMsg_LoginFailed", resourceCulture);
             }
         }
         
