@@ -192,7 +192,7 @@ namespace MISA.WEB09.QLTS.BL
         /// <param name="recordId">Id đối tượng cần validate</param>
         /// <returns>Đối tượng ServiceResponse mô tả validate thành công hay thất bại</returns>
         /// Cretaed by: NNNINH (10/11/2022)
-        private ServiceResponse ValidateRequestData(T record, Guid recordId)
+        public ServiceResponse ValidateRequestData(T record, Guid recordId)
         {
             // Validate dữ liệu đầu vào
             var properties = typeof(T).GetProperties();

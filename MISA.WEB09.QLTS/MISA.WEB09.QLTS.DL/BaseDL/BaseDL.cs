@@ -82,24 +82,7 @@ namespace MISA.WEB09.QLTS.DL
         /// Cretaed by: NNNINH (10/11/2022)
         public Guid InsertRecord(T record, Guid recordId)
         {
-            // Chuẩn bị tham số đầu vào cho procedure
-            var parameters = new DynamicParameters();
-            var properties = typeof(T).GetProperties();
-            foreach (var property in properties)
-            {
-                string propertyName = property.Name;
-                object propertyValue;
-                var primaryKeyAttribute = (PrimaryKeyAttribute)Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
-                if (primaryKeyAttribute != null)
-                {
-                    propertyValue = recordId;
-                }
-                else
-                {
-                    propertyValue = property.GetValue(record, null);
-                }
-                parameters.Add($"v_{propertyName}", propertyValue);
-            }
+            DynamicParameters parameters = PramatersProperties(recordId, record);
 
             // Khởi tạo kết nối tới DB MySQL
             string connectionString = DataContext.MySqlConnectionString;
@@ -133,24 +116,7 @@ namespace MISA.WEB09.QLTS.DL
         /// Cretaed by: NNNINH (11/11/2022)
         public Guid UpdateRecord(Guid recordId, T record)
         {
-            // Chuẩn bị tham số đầu vào cho procedure
-            var parameters = new DynamicParameters();
-            var properties = typeof(T).GetProperties();
-            foreach (var property in properties)
-            {
-                string propertyName = property.Name;
-                object propertyValue;
-                var primaryKeyAttribute = (PrimaryKeyAttribute)Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
-                if (primaryKeyAttribute != null)
-                {
-                    propertyValue = recordId;
-                }
-                else
-                {
-                    propertyValue = property.GetValue(record, null);
-                }
-                parameters.Add($"v_{propertyName}", propertyValue);
-            }
+            DynamicParameters parameters = PramatersProperties(recordId, record);
 
             // Khởi tạo kết nối tới DB MySQL
             string connectionString = DataContext.MySqlConnectionString;
@@ -172,6 +138,37 @@ namespace MISA.WEB09.QLTS.DL
             {
                 return Guid.Empty;
             }
+        }
+
+        /// <summary>
+        /// Chuẩn bị đầu vào cho proceduce
+        /// </summary>
+        /// <param name="recordId">ID bản ghi</param>
+        /// <param name="record">Đối tượng lấy các biến</param>
+        /// <returns>ID bản ghi vừa xóa</returns>
+        /// Cretaed by: NNNINH (11/01/2023)
+        public static DynamicParameters PramatersProperties(Guid recordId, T record)
+        {
+            // Chuẩn bị tham số đầu vào cho procedure
+            var parameters = new DynamicParameters();
+            var properties = typeof(T).GetProperties();
+            foreach (var property in properties)
+            {
+                string propertyName = property.Name;
+                object propertyValue;
+                var primaryKeyAttribute = (PrimaryKeyAttribute)Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
+                if (primaryKeyAttribute != null)
+                {
+                    propertyValue = recordId;
+                }
+                else
+                {
+                    propertyValue = property.GetValue(record, null);
+                }
+                parameters.Add($"v_{propertyName}", propertyValue);
+            }
+
+            return parameters;
         }
 
         /// <summary>
@@ -253,10 +250,8 @@ namespace MISA.WEB09.QLTS.DL
                 {
                     try
                     {
-
                         // Chuyển đổi list sang json
                         var listDatas = JsonSerializer.Serialize(recordIdList);
-
                         // Chuẩn bị tham số đầu vào
                         var parameters = new DynamicParameters();
                         parameters.Add($"v_{propertyName}s", listDatas);
@@ -393,11 +388,5 @@ namespace MISA.WEB09.QLTS.DL
                 return "";
             }
         }
-
-
-
-
-
-
     }
 }

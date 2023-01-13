@@ -85,85 +85,7 @@ namespace MISA.WEB09.QLTS.API.Controllers
             }
         }
 
-        /// <summary>
-        /// Thêm nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by:   NNNINH (06/01/2023)
-        [HttpPost("detail/batch-add")]
-        public IActionResult AddVoucherDetail(Guid voucherId,List<VoucherDetail> assetIdList)
-        {
-            try
-            {
-                var  results = _voucherBL.AddVoucherDetail(voucherId, assetIdList);
 
-                if (results > 0)
-                {
-                    return StatusCode(StatusCodes.Status200OK, results);
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
-                        ErrorCode.Exception,
-                        Resource.MoreInfo_InsertFailed,
-                        Resource.MoreInfo_InsertFailed,
-                        assetIdList,
-                        HttpContext.TraceIdentifier));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
-                    ErrorCode.Exception,
-                    Resource.DevMsg_Exception,
-                    Resource.UserMsg_Exception,
-                    Resource.MoreInfo_Exception,
-                    HttpContext.TraceIdentifier));
-            }
-        }
-
-        /// <summary>
-        /// Cập nhật nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by:   NNNINH (06/01/2023)
-        [HttpPost("detail/batch-update")]
-        public IActionResult UpadateVoucherDetail(Guid voucherId, List<Asset> assetDataill)
-        {
-            try
-            {
-                var results = _voucherBL.UpadateVoucherDetail(voucherId, assetDataill);
-
-                if (results > 0)
-                {
-                    return StatusCode(StatusCodes.Status200OK, results);
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
-                        ErrorCode.Exception,
-                        Resource.MoreInfo_UpdateFailed,
-                        Resource.MoreInfo_UpdateFailed,
-                        assetDataill,
-                        HttpContext.TraceIdentifier));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
-                    ErrorCode.Exception,
-                    Resource.DevMsg_Exception,
-                    Resource.UserMsg_Exception,
-                    Resource.MoreInfo_Exception,
-                    HttpContext.TraceIdentifier));
-            }
-        }
 
 
         /// <summary>
@@ -182,6 +104,7 @@ namespace MISA.WEB09.QLTS.API.Controllers
                 {
                     return StatusCode(StatusCodes.Status200OK, record);
                 }
+
                 else
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
@@ -204,21 +127,20 @@ namespace MISA.WEB09.QLTS.API.Controllers
             }
         }
 
-       
+
         /// <summary>
-        /// Thêm mới 1 bản ghi
-        /// </summary>
-        /// <param name="record">Đối tượng cần thêm mới</param>
-        /// <returns>ID đối tượng vừa thêm mới</returns>
-        /// Cretaed by: NNNINH (10/11/2022)
+        /// Thêm mới chứng từ kèm detail
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa thêm</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
         [HttpPost("addVouchers")]
-        public IActionResult backAddVoucherDetaill([FromBody] BackAddVoucherDetaill backAddVoucherDetaill)
+        public IActionResult BackAddVoucherDetail([FromBody] BackAddVoucherDetaill backAddVoucherDetaill)
         {
             try
             {
                 if (backAddVoucherDetaill != null)
                 {
-                    var result = _voucherBL.backAddVoucherDetail(backAddVoucherDetaill);
+                    var result = _voucherBL.BackAddVoucherDetail(backAddVoucherDetaill);
 
                     if (result.Success)
                     {
@@ -244,6 +166,48 @@ namespace MISA.WEB09.QLTS.API.Controllers
                     HttpContext.TraceIdentifier));
                 }
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult(
+                    ErrorCode.Exception,
+                    Resource.DevMsg_Exception,
+                    Resource.UserMsg_Exception,
+                    Resource.MoreInfo_Exception,
+                    HttpContext.TraceIdentifier));
+            }
+        }
+
+
+        /// <summary>
+        /// Cập nhật chứng từ kèm detail 
+        /// </summary>
+        /// <param name="voucherId">ID chứng từ đang sửa</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa sửa</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
+        [HttpPost("detail/batch-update")]
+        public IActionResult UpadateVoucherDetail(Guid voucherId, BackAddVoucherDetaill backAddVoucherDetaill)
+        {
+            try
+            {
+
+                var result = _voucherBL.UpadateVoucherDetail(voucherId, backAddVoucherDetaill);
+
+                if (result.Success)
+                {
+                    return StatusCode(StatusCodes.Status200OK, result.Data);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new ErrorResult(
+                        ErrorCode.Exception,
+                        Resource.MoreInfo_UpdateFailed,
+                        Resource.MoreInfo_UpdateFailed,
+                        backAddVoucherDetaill,
+                        HttpContext.TraceIdentifier));
+                }
             }
             catch (Exception ex)
             {

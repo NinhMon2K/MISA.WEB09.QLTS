@@ -31,25 +31,6 @@ namespace MISA.WEB09.QLTS.BL
         public PagingData<Asset> GetVoucherDetail(string? keyword, Guid voucherId, int limit, int page);
 
         /// <summary>
-        /// Thêm nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by: NNNINH (06/01/2023)
-        public int AddVoucherDetail(Guid voucherId, List<VoucherDetail> voucherDetails);
-
-        /// <summary>
-        /// Cập nhật nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by: NNNINH (06/01/2023)
-        public int UpadateVoucherDetail(Guid voucherId, List<Asset> assetDataill);
-
-
-        /// <summary>
         /// Lấy 1 bản ghi theo id
         /// </summary>
         /// <param name="recordId">ID của bản ghi cần lấy</param>
@@ -57,6 +38,20 @@ namespace MISA.WEB09.QLTS.BL
         /// Created by: NNINH (09/11/2022)
         public VoucherDetail GetVoucherDetailById(Guid voucherId,Guid assetId);
 
-        public ServiceResponse backAddVoucherDetail(BackAddVoucherDetaill backAddVoucherDetaill);
+        /// <summary>
+        /// Thêm mới chứng từ kèm detail
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa thêm</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
+        public ServiceResponse BackAddVoucherDetail(BackAddVoucherDetaill backAddVoucherDetaill);
+
+        /// <summary>
+        /// Cập nhật chứng từ kèm detail 
+        /// </summary>
+        /// <param name="voucherId">ID chứng từ đang sửa</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa sửa</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
+        public ServiceResponse UpadateVoucherDetail(Guid voucherId, BackAddVoucherDetaill backAddVoucherDetaill);
     }
 }

@@ -104,159 +104,6 @@ namespace MISA.WEB09.QLTS.DL
 
             return filterResponse;
         }
-
-        /// <summary>
-        /// Thêm nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by: NNNINH (06/01/2023)
-        public int AddVoucherDetail(Guid voucherId, List<VoucherDetail> voucherDetails)
-        {
-
-            foreach (var items in voucherDetails)
-            {
-                items.voucher_detail_id = Guid.NewGuid();
-                items.voucher_id = voucherId;
-            }
-            // Khởi tạo kết nối tới DB MySQL
-            int numberOfAffectedRows = 0;
-            string connectionString = DataContext.MySqlConnectionString;
-            using (var mysqlConnection = new MySqlConnection(connectionString))
-            {
-                // Khai báo tên prodecure
-                string storedProcedureName = "Proc_voucher_detail_BatchAdd";
-
-                mysqlConnection.Open();
-
-                // Bắt đầu transaction.
-                using (var transaction = mysqlConnection.BeginTransaction())
-                {
-                    try
-                    {
-
-                        // Chuyển đổi list sang json
-
-
-                        // Chuẩn bị tham số đầu vào
-                        // Chuyển đổi list sang json
-                        var listDatas = JsonSerializer.Serialize(voucherDetails);
-
-                        // Chuẩn bị tham số đầu vào
-                        var parameters = new DynamicParameters();
-                        parameters.Add($"v_asset_detaill", listDatas);
-                        numberOfAffectedRows = mysqlConnection.Execute(storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure, transaction: transaction);
-
-                        if (numberOfAffectedRows == voucherDetails.Count)
-                        {
-                            transaction.Commit();
-
-                            return numberOfAffectedRows;
-                        }
-                        else
-                        {
-                            transaction.Rollback();
-                            numberOfAffectedRows = 0;
-                            return numberOfAffectedRows;
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        mysqlConnection.Close();
-                        numberOfAffectedRows = 0;
-                        return numberOfAffectedRows;
-                    }
-                    finally
-                    {
-                        mysqlConnection.Close();
-                    }
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Cập nhật nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by: NNNINH (06/01/2023)
-        public int UpadateVoucherDetail(Guid voucherId, List<Asset> assetDataill)
-        {
-            
-            var listVoucherDetail = new List<Dictionary<string, object>>();
-
-            foreach (var items in assetDataill)
-            {
-                if (items.flag != 0) {
-                    var obj = new Dictionary<string, object>();
-                    obj["voucher_detail_id"] = Guid.NewGuid();
-                    obj["voucher_id"] = voucherId;
-                    obj["fixed_asset_id"] = items.fixed_asset_id;
-                    obj["budget"] = items.budget;
-                    obj["oldCost"] = items.oldCost;
-                    obj["created_by"] = Resource.DefaultUser;
-                    obj["created_date"] = DateTime.Now;
-                    obj["modified_by"] = Resource.DefaultUser;
-                    obj["modified_date"] = DateTime.Now;
-                    obj["flag"] = items.flag;
-                    listVoucherDetail.Add(obj);
-                }   
-            }
-            // Chuyển đổi list sang json
-            var listDatas = JsonSerializer.Serialize(listVoucherDetail);
-            var parameters = new DynamicParameters();
-            parameters.Add($"v_asset_detaill", listDatas);
-            // Khởi tạo kết nối tới DB MySQL
-            int numberOfAffectedRows = 0;
-            string connectionString = DataContext.MySqlConnectionString;
-            using (var mysqlConnection = new MySqlConnection(connectionString))
-            {
-                // Khai báo tên prodecure
-                string storedProcedureName = "Proc_voucher_detail_BatchUpdate";
-
-                mysqlConnection.Open();
-
-                // Bắt đầu transaction.
-                using (var transaction = mysqlConnection.BeginTransaction())
-                {
-                    try
-                    {
-                       
-                        numberOfAffectedRows = mysqlConnection.Execute(storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure, transaction: transaction);
-
-                        if (numberOfAffectedRows > 0)
-                        {
-                            transaction.Commit();
-
-                            return numberOfAffectedRows;
-                        }
-                        else
-                        {
-                            transaction.Rollback();
-                            numberOfAffectedRows = 0;
-                            return numberOfAffectedRows;
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        mysqlConnection.Close();
-                        numberOfAffectedRows = 0;
-                        return numberOfAffectedRows;
-                    }
-                    finally
-                    {
-                        mysqlConnection.Close();
-                    }
-                }
-            }
-
-        }
-
         /// <summary>
         /// Lấy 1 bản ghi theo id
         /// </summary>
@@ -294,32 +141,16 @@ namespace MISA.WEB09.QLTS.DL
         }
 
         /// <summary>
-        /// Thêm 1 chứng từ kèm detaill
-        /// </summary>
-        /// <param name="recordId">ID của bản ghi</param>
-        /// <returns>Bản ghi có ID được truyền vào</returns>
-        /// Created by:  NNNINH (11/1/2023)
+        /// Thêm mới chứng từ kèm detail
+        /// <param name="voucherId">ID chứng từ đang thêm</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa thêm</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
         public Guid BackAddVoucherDetail(BackAddVoucherDetaill backAddVoucherDetaill, Guid recordId)
         {
             // Chuẩn bị tham số đầu vào cho procedure
-            var parameters = new DynamicParameters();
-            var properties = typeof(Voucher).GetProperties();
-            foreach (var property in properties)
-            {
-                string propertyName = property.Name;
-                object propertyValue;
-                var primaryKeyAttribute = (PrimaryKeyAttribute)Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
-                if (primaryKeyAttribute != null)
-                {
-                    propertyValue = recordId;
-                }
-                else
-                {
-                    propertyValue = property.GetValue(backAddVoucherDetaill.Voucher, null);
-                }
-                parameters.Add($"v_{propertyName}", propertyValue);
-            }
-            var voucherData = new List<List<VoucherDetail>>();
+            DynamicParameters parameters = PramatersProperties(recordId, backAddVoucherDetaill.Voucher);
+
             var listVoucherDetail = new List<Dictionary<string, object>>();
 
             foreach (var items in backAddVoucherDetaill.listAssetDetail)
@@ -386,34 +217,74 @@ namespace MISA.WEB09.QLTS.DL
         }
 
         /// <summary>
-        /// Kiểm tra trùng mã bản ghi
+        /// Cập nhật chứng từ kèm detail 
         /// </summary>
-        /// <param name="recordCode">Mã cần xét trùng</param>
-        /// <param name="recordId">Id bản ghi đưa vào (nếu là sửa)</param>
-        /// <returns>Số lượng mã tài sản bị trùng</returns>
-        /// Cretaed by:  NNNINH (09/11/2022)
-        public int DuplicateVoucherCode(object recordCode, Guid recordId)
+        /// <param name="voucherId">ID chứng từ đang sửa</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa sửa</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
+        public Guid UpadateVoucherDetail(Guid voucherId, BackAddVoucherDetaill backAddVoucherDetaill)
         {
-            // Khai báo tên prodecure
-            string storedProcedureName = "Proc_voucher_DuplicateCode";
+            DynamicParameters parameters = PramatersProperties(voucherId, backAddVoucherDetaill.Voucher);
+            var listVoucherDetail = new List<Dictionary<string, object>>();
 
-            // Chuẩn bị tham số đầu vào cho procedure
-            var parameters = new DynamicParameters();
-
-            if (recordCode != null && recordId != null)
+            foreach (var items in backAddVoucherDetaill.listAssetDetail)
             {
-                parameters.Add($"v_voucher_code", recordCode);
-                parameters.Add($"v_voucher_id", recordId);
+                if (items.flag != 0)
+                {
+                    var obj = new Dictionary<string, object>();
+                    obj["voucher_detail_id"] = Guid.NewGuid();
+                    obj["voucher_id"] = voucherId;
+                    obj["fixed_asset_id"] = items.fixed_asset_id;
+                    obj["budget"] = items.budget;
+                    obj["oldCost"] = items.oldCost;
+                    obj["created_by"] = Resource.DefaultUser;
+                    obj["created_date"] = DateTime.Now;
+                    obj["modified_by"] = Resource.DefaultUser;
+                    obj["modified_date"] = DateTime.Now;
+                    obj["flag"] = items.flag;
+                    listVoucherDetail.Add(obj);
+                }
             }
+            // Chuyển đổi list sang json
+            var listDatas = JsonSerializer.Serialize(listVoucherDetail);
+
+            parameters.Add($"v_asset_detaill", listDatas);
             // Khởi tạo kết nối tới DB MySQL
             string connectionString = DataContext.MySqlConnectionString;
-            int duplicates = 0;
             using (var mysqlConnection = new MySqlConnection(connectionString))
             {
-                duplicates = mysqlConnection.QueryFirstOrDefault<int>(storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure);
+                // Khai báo tên prodecure
+                string storedProcedureName = "Proc_voucher_detail_BatchUpdate";
+
+                mysqlConnection.Open();
+
+                // Bắt đầu transaction.
+                using (var transaction = mysqlConnection.BeginTransaction())
+                {
+                    try
+                    {
+
+                        mysqlConnection.Execute(storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure, transaction: transaction);
+                        transaction.Commit();
+                        return voucherId;
+
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        mysqlConnection.Close();
+                        return Guid.Empty;
+                    }
+                    finally
+                    {
+                        mysqlConnection.Close();
+                    }
+                }
             }
 
-            return duplicates;
         }
+
+
     }
 }

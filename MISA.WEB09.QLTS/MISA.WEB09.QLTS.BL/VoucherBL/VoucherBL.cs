@@ -17,7 +17,7 @@ namespace MISA.WEB09.QLTS.BL
 
         private IVoucherDL _voucherDL;
         private IBaseDL<Voucher> _baseDL;
-
+        
 
         #endregion
         #region Constructor
@@ -28,6 +28,16 @@ namespace MISA.WEB09.QLTS.BL
         #endregion
         #region Method
 
+        /// <summary>
+        /// Lấy 1 bản ghi theo id
+        /// </summary>
+        /// <param name="recordId">ID của bản ghi cần lấy</param>
+        /// <returns>Bản ghi có ID được truyền vào</returns>
+        /// Created by: NNNINH (09/11/2022)
+        public VoucherDetail GetVoucherDetailById(Guid voucherId,Guid assetId)
+        {
+            return _voucherDL.GetVoucherDetailById(voucherId,assetId);
+        }
         /// <summary>
         /// Lấy danh sách các chứng từ có chọn lọc
         /// </summary>
@@ -54,48 +64,17 @@ namespace MISA.WEB09.QLTS.BL
             return _voucherDL.GetVoucherDetail(keyword, voucherId, limit, page);
         }
 
+        
+
         /// <summary>
-        /// Thêm nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
+        /// Thêm mới chứng từ kèm detail
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa thêm</returns>
         /// Cretaed by: NNNINH (06/01/2023)
-        public int AddVoucherDetail(Guid voucherId, List<VoucherDetail> voucherDetails)
+        public ServiceResponse BackAddVoucherDetail(BackAddVoucherDetaill backAddVoucherDetaill)
         {
-            return _voucherDL.AddVoucherDetail(voucherId, voucherDetails); 
-        }
-
-        /// <summary>
-        /// Cập nhật nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by: NNNINH (06/01/2023)
-        public int UpadateVoucherDetail(Guid voucherId, List<Asset> assetDataill)
-        {
-            return _voucherDL.UpadateVoucherDetail(voucherId, assetDataill);
-        }
-
-
-
-        /// <summary>
-        /// Lấy 1 bản ghi theo id
-        /// </summary>
-        /// <param name="recordId">ID của bản ghi cần lấy</param>
-        /// <returns>Bản ghi có ID được truyền vào</returns>
-        /// Created by: NNNINH (09/11/2022)
-        public VoucherDetail GetVoucherDetailById(Guid voucherId,Guid assetId)
-        {
-            return _voucherDL.GetVoucherDetailById(voucherId,assetId);
-        }
-
-        public ServiceResponse backAddVoucherDetail(BackAddVoucherDetaill backAddVoucherDetaill)
-        {
-            var newRecordID = Guid.NewGuid();
-            var validateResult = GetValidateResult(backAddVoucherDetaill, newRecordID);
-
+            var newRecordID = Guid.NewGuid();    
+            var validateResult = ValidateRequestData(backAddVoucherDetaill.Voucher, newRecordID);
             if (validateResult != null && validateResult.Success)
             {
                 var res = _voucherDL.BackAddVoucherDetail(backAddVoucherDetaill, newRecordID );
@@ -131,50 +110,51 @@ namespace MISA.WEB09.QLTS.BL
             }
         }
 
-        private ServiceResponse GetValidateResult(BackAddVoucherDetaill backAddVoucherDetaill, Guid newRecordID)
+        /// <summary>
+        /// Cập nhật chứng từ kèm detail 
+        /// </summary>
+        /// <param name="voucherId">ID chứng từ đang sửa</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa sửa</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
+        public ServiceResponse UpadateVoucherDetail(Guid voucherId, BackAddVoucherDetaill backAddVoucherDetaill)
         {
+            var validateResult = ValidateRequestData(backAddVoucherDetaill.Voucher, voucherId);
 
-            // Validate dữ liệu đầu vào
-            var properties = typeof(Voucher).GetProperties();
-            var validateFailures = new List<string>();
-     
-            if (backAddVoucherDetaill.Voucher != null)
+            if (validateResult != null && validateResult.Success)
             {
-                // duyệt qua từng phần tử
-                foreach (var property in properties)
-                {
-                    // Lấy giá trị của thuộc tính đó
-                    var propertyValue = property.GetValue(backAddVoucherDetaill.Voucher, null);
-                    // Kiểm tra property có require
-                    var IsNotNullOrEmptyAttribute = (IsNotNullOrEmptyAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotNullOrEmptyAttribute));
-                    // Kiểm tra xem property đã có attibute Required không 
-                    if (IsNotNullOrEmptyAttribute != null && string.IsNullOrEmpty(propertyValue?.ToString()))
-                    {
-                        validateFailures.Add(IsNotNullOrEmptyAttribute.ErrorMessage);
-                    }
+                var inputRecordID = _voucherDL.UpadateVoucherDetail(voucherId, backAddVoucherDetaill);
 
-                    // Kiểm tra xem property Attribure dùng để xác định 1 property không được trùng lặp 
-                    var IsNotDuplicateAttribute = (IsNotDuplicateAttribute?)Attribute.GetCustomAttribute(property, typeof(IsNotDuplicateAttribute));
-                    if (IsNotDuplicateAttribute != null)
+                if (inputRecordID != Guid.Empty)
+                {
+                    return new ServiceResponse
                     {
-                        int count = _voucherDL.DuplicateVoucherCode(propertyValue, newRecordID);
-                        if (count > 0) validateFailures.Add(IsNotDuplicateAttribute.ErrorMessage);
-                    }
+                        Success = true,
+                        Data = inputRecordID
+                    };
+                }
+                else
+                {
+                    return new ServiceResponse
+                    {
+                        Success = false,
+                        Data = new ErrorResult(
+                            ErrorCode.InvalidInput,
+                            Resource.DevMsg_InsertFailed,
+                            Resource.UserMsg_InsertFailed,
+                            Resource.MoreInfo_InsertFailed)
+                    };
                 }
             }
-
-            if (validateFailures.Count > 0)
+            else
             {
                 return new ServiceResponse
                 {
                     Success = false,
-                    Data = validateFailures
+                    Data = validateResult?.Data
                 };
             }
-            return new ServiceResponse
-            {
-                Success = true
-            };
+
         }
         #endregion
     }

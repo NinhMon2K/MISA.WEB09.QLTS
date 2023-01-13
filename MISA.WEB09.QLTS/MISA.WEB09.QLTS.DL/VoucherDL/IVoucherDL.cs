@@ -30,24 +30,6 @@ namespace MISA.WEB09.QLTS.DL
         public PagingData<Asset> GetVoucherDetail(string? keyword, Guid voucherId, int limit, int page);
 
         /// <summary>
-        /// Thêm nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by:NNNINH (06/01/2023)
-        public int AddVoucherDetail(Guid voucherId, List<VoucherDetail> assetIdList);
-
-        /// <summary>
-        /// Cập nhật nhiều tài sản trong chứng từ
-        /// </summary>
-        /// <param name="voucherId">ID chứng từ đang sửa</param>
-        /// <param name="assetIdList">Danh sách ID các tài sản cần thêm</param>
-        /// <returns>Danh sách ID các tài sản đã thêm</returns>
-        /// Cretaed by:NNNINH (06/01/2023)
-        public int UpadateVoucherDetail(Guid voucherId, List<Asset> assetDataill);
-
-        /// <summary>
         /// Lấy 1 bản ghi theo id
         /// </summary>
         /// <param name="recordId">ID của bản ghi cần lấy</param>
@@ -56,23 +38,21 @@ namespace MISA.WEB09.QLTS.DL
         public VoucherDetail GetVoucherDetailById(Guid voucherId,Guid assetId);
 
         /// <summary>
-        /// Thêm 1 chứng từ kèm detaill
-        /// </summary>
-        /// <param name="recordId">ID của bản ghi cần lấy</param>
-        /// <returns>Bản ghi có ID được truyền vào</returns>
-        /// Created by:  NNNINH (09/11/2022)
+        /// Thêm mới chứng từ kèm detail
+        /// <param name="voucherId">ID chứng từ đang thêm</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa thêm</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
         public Guid BackAddVoucherDetail(BackAddVoucherDetaill backAddVoucherDetaill, Guid recordId);
 
-        #region API DuplicateCode
         /// <summary>
-        /// Kiểm tra trùng mã bản ghi
+        /// Cập nhật chứng từ kèm detail 
         /// </summary>
-        /// <param name="recordCode">Mã cần xét trùng</param>
-        /// <param name="recordId">Id bản ghi đưa vào (nếu là sửa)</param>
-        /// <returns>Số lượng mã tài sản bị trùng</returns>
-        /// Cretaed by:  NNNINH (12/1/2023)
-        public int DuplicateVoucherCode(object recordCode, Guid recordId); 
-        #endregion
+        /// <param name="voucherId">ID chứng từ đang sửa</param>
+        /// <param name="backAddVoucherDetaill">Đối tượng chứng từ kèm danh sách tài sản cần chứng từ</param>
+        /// <returns>Mã chứng từ vừa sửa</returns>
+        /// Cretaed by: NNNINH (06/01/2023)
+        public Guid UpadateVoucherDetail(Guid voucherId, BackAddVoucherDetaill backAddVoucherDetaill);
 
     }
 }
